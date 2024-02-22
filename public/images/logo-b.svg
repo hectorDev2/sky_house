@@ -1,39 +1,11 @@
-'use client'
 
-import Image from 'next/image'
-import { useRouter } from 'next/navigation'
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="497.000000pt" height="502.000000pt" viewBox="0 0 497.000000 502.000000"
+ preserveAspectRatio="xMidYMid meet">
 
-const Logo = () => {
-  const router = useRouter()
-
-  return (
-    //     <Image
-    //       onClick={() => router.push('/')}
-    //       className='hidden md:block cursor-pointer'
-    //       src='/images/logo-b.svg
-    // '
-    //       height='100'
-    //       width='100'
-    //       alt='Logo'
-    //     />
-
-    <svg
-      onClick={() => router.push('/')}
-      className='hidden md:block cursor-pointer'
-      version='1.0'
-      xmlns='http://www.w3.org/2000/svg'
-      width='100'
-      height='100'
-      viewBox='0 0 497.000000 502.000000'
-      preserveAspectRatio='xMidYMid meet'
-    >
-      <g
-        transform='translate(0.000000,502.000000) scale(0.100000,-0.100000)'
-        fill='#000000'
-        stroke='none'
-      >
-        <path
-          d='M519 4084 c-54 -22 -64 -50 -63 -173 2 -110 22 -213 85 -430 44 -152
+<g transform="translate(0.000000,502.000000) scale(0.100000,-0.100000)"
+fill="#000000" stroke="none">
+<path d="M519 4084 c-54 -22 -64 -50 -63 -173 2 -110 22 -213 85 -430 44 -152
 158 -480 191 -548 9 -17 3 -39 -27 -115 -96 -236 -136 -447 -136 -717 0 -237
 30 -420 102 -634 50 -146 189 -401 292 -537 75 -98 246 -264 362 -353 5 -4 24
 -19 40 -32 17 -14 33 -25 37 -25 4 0 13 -6 20 -12 18 -17 46 -35 78 -50 14 -7
@@ -57,11 +29,6 @@ const Logo = () => {
 -181 -98 27 -129 41 -129 59 0 7 25 28 55 46 30 19 55 39 55 43 0 4 6 8 13 8
 8 0 23 8 35 18 11 9 28 23 39 30 51 35 160 112 170 122 7 6 34 25 60 42 27 18
 53 37 60 43 7 5 18 15 25 20 15 12 182 126 206 140 9 6 21 15 28 20 6 6 22 17
-34 25 44 30 145 103 150 109 13 16 116 81 127 81 9 0 13 -16 13 -52z'
-        />
-      </g>
-    </svg>
-  )
-}
-
-export default Logo
+34 25 44 30 145 103 150 109 13 16 116 81 127 81 9 0 13 -16 13 -52z"/>
+</g>
+</svg>
