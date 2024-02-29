@@ -11,6 +11,7 @@ import ToasterProvider from '@/app/providers/ToasterProvider'
 import './globals.css'
 import ClientOnly from './components/ClientOnly'
 import getCurrentUser from './actions/getCurrentUser'
+import { Footer } from './components/shared/Footer'
 
 export const metadata = {
   title: 'Sky house',
@@ -38,8 +39,9 @@ export default async function RootLayout ({
           <SearchModal />
           <RentModal />
           <Navbar currentUser={currentUser} />
+          <div className='pb-20 pt-40'>{children}</div>
+          <Footer />
         </ClientOnly>
-        <div className='pb-20 pt-40'>{children}</div>
       </body>
     </html>
   )
