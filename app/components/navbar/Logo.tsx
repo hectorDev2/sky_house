@@ -1,29 +1,18 @@
 'use client'
 
-import Image from 'next/image'
 import { useRouter } from 'next/navigation'
 
 const Logo = () => {
   const router = useRouter()
 
   return (
-    //     <Image
-    //       onClick={() => router.push('/')}
-    //       className='hidden md:block cursor-pointer'
-    //       src='/images/logo-b.svg
-    // '
-    //       height='100'
-    //       width='100'
-    //       alt='Logo'
-    //     />
-
     <svg
       onClick={() => router.push('/')}
       className='hidden md:block cursor-pointer'
       version='1.0'
       xmlns='http://www.w3.org/2000/svg'
-      width='100'
-      height='100'
+      width='50'
+      height='50'
       viewBox='0 0 497.000000 502.000000'
       preserveAspectRatio='xMidYMid meet'
     >
