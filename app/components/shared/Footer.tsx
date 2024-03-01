@@ -23,7 +23,7 @@ export const Footer = () => {
               <ul className='text-gray-500 dark:text-gray-400 font-medium'>
                 <li className='mb-4'>
                   <Link href='/' className='hover:underline'>
-                    INICIO
+                    Inicio
                   </Link>
                 </li>
                 <li>
@@ -62,14 +62,17 @@ export const Footer = () => {
               </h2>
               <ul className='text-gray-500 dark:text-gray-400 font-medium'>
                 <li className='mb-4'>
-                  <a href='#' className='hover:underline'>
-                    Privacy Policy
-                  </a>
+                  <Link href='/privacidad' className='hover:underline'>
+                    privacidad
+                  </Link>
                 </li>
                 <li>
-                  <a href='#' className='hover:underline'>
-                    Terms &amp; Conditions
-                  </a>
+                  <Link
+                    href='/terminos-y-condiciones'
+                    className='hover:underline'
+                  >
+                    terminos y condiciones
+                  </Link>
                 </li>
               </ul>
             </div>
