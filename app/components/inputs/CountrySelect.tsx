@@ -4,11 +4,18 @@ import placesPe from '../../database/places-pe.json'
 import { dataFormat } from '@/app/database/format'
 
 export type CountrySelectValue = {
-  flag: string
+  city: string
   label: string
-  latlng: number[]
-  region: string
+  lat: string
+  lng: string
   value: string
+  latlng: number[]
+  country: string
+  iso2: string
+  admin_name: string
+  capital: string
+  population: string
+  population_proper: string
 }
 
 interface CountrySelectProps {

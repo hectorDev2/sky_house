@@ -1,59 +1,41 @@
-'use client';
+'use client'
 
-import { useSearchParams } from 'next/navigation';
-import { useMemo } from 'react';
-import { BiSearch } from 'react-icons/bi';
-import { differenceInDays } from 'date-fns';
-
-import useSearchModal from '@/app/hooks/useSearchModal';
-import useCountries from '@/app/hooks/useCountries';
+import { useRouter, useSearchParams } from 'next/navigation'
+import { useCallback, useState } from 'react'
+import { BiSearch } from 'react-icons/bi'
+import qs from 'query-string'
 
 const Search = () => {
-  const searchModal = useSearchModal();
-  const params = useSearchParams();
-  const { getByValue } = useCountries();
+  const [inputSearch, setInputSearch] = useState<any>()
+  const params = useSearchParams()
+  const router = useRouter()
 
-  const  locationValue = params?.get('locationValue'); 
-  const  startDate = params?.get('startDate');
-  const  endDate = params?.get('endDate');
-  const  guestCount = params?.get('guestCount');
+  const onSubmit = useCallback(async () => {
+    let currentQuery = {}
 
-  const locationLabel = useMemo(() => {
-    if (locationValue) {
-      return getByValue(locationValue as string)?.label;
+    if (params) {
+      currentQuery = qs.parse(params.toString())
     }
 
-    return 'Anywhere';
-  }, [locationValue, getByValue]);
-
-  const durationLabel = useMemo(() => {
-    if (startDate && endDate) {
-      const start = new Date(startDate as string);
-      const end = new Date(endDate as string);
-      let diff = differenceInDays(end, start);
-
-      if (diff === 0) {
-        diff = 1;
-      }
-
-      return `${diff} Days`;
+    const updatedQuery: any = {
+      ...currentQuery,
+      title: inputSearch
     }
 
-    return 'Any Week'
-  }, [startDate, endDate]);
+    const url = qs.stringifyUrl(
+      {
+        url: '/',
+        query: updatedQuery
+      },
+      { skipNull: true }
+    )
 
-  const guestLabel = useMemo(() => {
-    if (guestCount) {
-      return `${guestCount} Guests`;
-    }
+    router.push(url)
+  }, [router, params, inputSearch])
 
-    return 'Add Guests';
-  }, [guestCount]);
-
-  return ( 
+  return (
     <div
-      onClick={searchModal.onOpen}
-      className="
+      className='
         border-[1px] 
         w-full 
         md:w-auto 
@@ -63,41 +45,18 @@ const Search = () => {
         hover:shadow-md 
         transition 
         cursor-pointer
-      "
+      '
     >
-      <div 
-        className="
+      <div
+        className='
           flex 
           flex-row 
           items-center 
           justify-between
-        "
+        '
       >
-        <div 
-          className="
-            text-sm 
-            font-semibold 
-            px-6
-          "
-        >
-          {locationLabel}
-        </div>
-        <div 
-          className="
-            hidden 
-            sm:block 
-            text-sm 
-            font-semibold 
-            px-6 
-            border-x-[1px] 
-            flex-1 
-            text-center
-          "
-        >
-          {durationLabel}
-        </div>
-        <div 
-          className="
+        <div
+          className='
             text-sm 
             pl-6 
             pr-2 
@@ -106,23 +65,28 @@ const Search = () => {
             flex-row 
             items-center 
             gap-3
-          "
+          '
         >
-          <div className="hidden sm:block">{guestLabel}</div>
-          <div 
-            className="
+          <input
+            onChange={value => setInputSearch(value.target.value)}
+            className='focus:outline-none'
+            type='text'
+          />
+          <div
+            className='
               p-2 
               bg-rose-500 
               rounded-full 
-              text-white
-            "
+              text-white 
+            '
+            onClick={onSubmit}
           >
             <BiSearch size={18} />
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }
- 
-export default Search;
+
+export default Search
