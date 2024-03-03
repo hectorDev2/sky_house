@@ -5,6 +5,9 @@ import EmptyState from '@/app/components/EmptyState'
 import getListings, { IListingsParams } from '@/app/actions/getListings'
 import getCurrentUser from '@/app/actions/getCurrentUser'
 import ClientOnly from './components/ClientOnly'
+import { Hero } from './components/shared/Hero'
+import Tips from './components/home/Tips'
+import DemoSlider from './components/home/Slider'
 
 interface HomeProps {
   searchParams: IListingsParams
@@ -13,7 +16,6 @@ interface HomeProps {
 const Home = async ({ searchParams }: HomeProps) => {
   const listings = await getListings(searchParams)
   const currentUser = await getCurrentUser()
-  console.log(listings)
 
   if (listings.length === 0) {
     return (
@@ -25,6 +27,7 @@ const Home = async ({ searchParams }: HomeProps) => {
 
   return (
     <ClientOnly>
+      <Hero />
       <Container>
         <div
           className='
@@ -48,6 +51,8 @@ const Home = async ({ searchParams }: HomeProps) => {
           ))}
         </div>
       </Container>
+      <DemoSlider />
+      <Tips />
     </ClientOnly>
   )
 }
