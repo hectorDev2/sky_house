@@ -50,8 +50,8 @@ const Home = async ({ searchParams }: HomeProps) => {
             />
           ))}
         </div>
+        {/* <DemoSlider /> */}
       </Container>
-      <DemoSlider />
       <Tips />
     </ClientOnly>
   )

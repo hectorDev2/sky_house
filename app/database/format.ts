@@ -14,5 +14,6 @@ export const dataFormat = (data: placeInterface[]) => {
   return data.map((place) => ({
     ...place,
     latlng: [Number(place.lat), Number(place.lng)],
+    value: place.label,
   }));
 };
