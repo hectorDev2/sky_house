@@ -7,7 +7,6 @@ import getCurrentUser from '@/app/actions/getCurrentUser'
 import ClientOnly from './components/ClientOnly'
 import { Hero } from './components/shared/Hero'
 import Tips from './components/home/Tips'
-import DemoSlider from './components/home/Slider'
 
 interface HomeProps {
   searchParams: IListingsParams

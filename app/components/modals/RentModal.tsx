@@ -18,10 +18,9 @@ import Heading from '../Heading'
 enum STEPS {
   CATEGORY = 0,
   LOCATION = 1,
-  INFO = 2,
-  IMAGES = 3,
-  DESCRIPTION = 4,
-  PRICE = 5
+  IMAGES = 2,
+  DESCRIPTION = 3,
+  PRICE = 4
 }
 
 const RentModal = () => {
@@ -41,11 +40,16 @@ const RentModal = () => {
   } = useForm<FieldValues>({
     defaultValues: {
       category: '',
-      location: null,
+      location: {
+        country: '',
+        city: '',
+        lng: 0,
+        lat: 0
+      },
       guestCount: 1,
       roomCount: 1,
       bathroomCount: 1,
-      imageSrc: '',
+      images: [],
       price: 1,
       title: '',
       description: ''
@@ -54,18 +58,26 @@ const RentModal = () => {
 
   const location = watch('location')
   const category = watch('category')
-  const imageSrc = watch('imageSrc')
+  const images = watch('images')
 
   const Map = useMemo(
     () =>
       dynamic(() => import('../Map'), {
         ssr: false
       }),
-    [location]
+    []
   )
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
+      shouldDirty: true,
+      shouldTouch: true,
+      shouldValidate: true
+    })
+  }
+
+  const setImagesValue = (value: any) => {
+    setValue('images', value, {
       shouldDirty: true,
       shouldTouch: true,
       shouldValidate: true
@@ -80,7 +92,18 @@ const RentModal = () => {
     setStep(value => value + 1)
   }
 
+  const clearData = (data: any) => {
+    if (data) {
+      const { location, ...restData } = data
+      const { lng, lat, ...rest } = location
+
+      return { location: rest, ...restData }
+    }
+  }
+
   const onSubmit: SubmitHandler<FieldValues> = data => {
+    const dataFormat = clearData(data)
+
     if (step !== STEPS.PRICE) {
       return onNext()
     }
@@ -88,16 +111,16 @@ const RentModal = () => {
     setIsLoading(true)
 
     axios
-      .post('/api/listings', data)
+      .post('/api/listings', dataFormat)
       .then(() => {
-        toast.success('Listing created!')
+        toast.success('Propiedad creada!')
         router.refresh()
         reset()
         setStep(STEPS.CATEGORY)
         rentModal.onClose()
       })
       .catch(() => {
-        toast.error('Something went wrong.')
+        toast.error('Algo anda mal.')
       })
       .finally(() => {
         setIsLoading(false)
@@ -169,13 +192,20 @@ const RentModal = () => {
           title='Agrega una foto'
           subtitle='Muestra a tus clientes foto de la propiedad'
         />
-        <ImageUpload
-          onChange={value => setCustomValue('imageSrc', value)}
-          value={imageSrc}
-        />
+        <ImageUpload onChange={value => setImagesValue(value)} value={images} />
       </div>
     )
   }
+  // if (step === STEPS.INFO) {
+  //   bodyContent = (
+  //     <div className='flex flex-col gap-8'>
+  //       <Heading
+  //         title='Comparte las cordenadas de su '
+  //         subtitle='What amenitis do you have?'
+  //       />
+  //     </div>
+  //   )
+  // }
 
   if (step === STEPS.DESCRIPTION) {
     bodyContent = (

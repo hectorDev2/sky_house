@@ -2,7 +2,7 @@
 
 import { CldUploadWidget } from 'next-cloudinary'
 import Image from 'next/image'
-import { useCallback } from 'react'
+import { useCallback, useState } from 'react'
 import { TbPhotoPlus } from 'react-icons/tb'
 
 declare global {
@@ -13,23 +13,28 @@ const uploadPreset = 'b2mmtvnl'
 
 interface ImageUploadProps {
   onChange: (value: string) => void
-  value: string
+  value: any
 }
 
 const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
+  const [photos, setPhotos] = useState<any>([])
   const handleUpload = useCallback(
     (result: any) => {
-      onChange(result.info.secure_url)
+      setPhotos([result.info.secure_url, ...photos])
+      onChange(photos)
     },
-    [onChange]
+
+    [onChange, photos]
   )
+
+  console.log(photos, 'photos ')
 
   return (
     <CldUploadWidget
       onUpload={handleUpload}
       uploadPreset={uploadPreset}
       options={{
-        maxFiles: 1
+        maxFiles: 4
       }}
     >
       {({ open }) => {
@@ -54,7 +59,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
             '
           >
             <TbPhotoPlus size={50} />
-            <div className='font-semibold text-lg'>Click to upload</div>
+            <div className='font-semibold text-lg'>click para subir</div>
             {value && (
               <div
                 className='
