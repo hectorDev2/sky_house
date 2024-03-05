@@ -92,7 +92,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
               group-hover:scale-110 
               transition
             '
-            src={data.imageSrc}
+            src={data.images[0]}
             alt='Listing'
           />
           <div
