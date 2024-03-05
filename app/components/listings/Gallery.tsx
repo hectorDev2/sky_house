@@ -1,5 +1,3 @@
-import 'photoswipe/dist/photoswipe.css'
-
 import { Gallery, Item } from 'react-photoswipe-gallery'
 
 const MyGallery = ({ images }: { images: string[] }) => (

@@ -10,7 +10,6 @@ import { SafeListing, SafeReservation, SafeUser } from '@/app/types'
 
 import HeartButton from '../HeartButton'
 import Button from '../Button'
-import ClientOnly from '../ClientOnly'
 
 interface ListingCardProps {
   data: SafeListing
@@ -106,18 +105,14 @@ const ListingCard: React.FC<ListingCardProps> = ({
           </div>
         </div>
         <div className='font-semibold text-lg'>
-          {location?.region}, {location?.label}
+          {data.title} - {location?.label}
         </div>
         <div className='font-light text-neutral-500'>
           {reservationDate || data.category}
         </div>
         <div className='flex flex-row items-center gap-1'>
-          <div className='font-semibold'>$ {price}</div>
-          {!reservation && (
-            <div className='font-light'>
-              m <sup>2</sup>
-            </div>
-          )}
+          <div className='font-semibold'>S/. {price}</div>
+          {!reservation && <div className='font-light'>soles</div>}
         </div>
         {onAction && actionLabel && (
           <Button
