@@ -118,14 +118,6 @@ const ListingClient: React.FC<ListingClientProps> = ({
         '
       >
         <div className='flex flex-col gap-6'>
-          {/* <ListingHead
-            title={listing.title}
-            imageSrc={listing.imageSrc}
-            locationValue={listing.locationValue}
-            id={listing.id}
-            currentUser={currentUser}
-          /> */}
-
           <MyGallery images={listing.images} />
           <button onClick={onRent} className='w-[200px] flex gap-5'>
             <svg
