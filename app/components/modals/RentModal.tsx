@@ -94,7 +94,8 @@ const RentModal = () => {
 
   const clearData = (data: any) => {
     if (data) {
-      const { location, ...restData } = data
+      const { guestCount, bathroomCount, roomCount, location, ...restData } =
+        data
       const { lng, lat, ...rest } = location
 
       return { location: rest, ...restData }
@@ -103,6 +104,7 @@ const RentModal = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = data => {
     const dataFormat = clearData(data)
+    console.log(dataFormat, 'hi')
 
     if (step !== STEPS.PRICE) {
       return onNext()
@@ -158,7 +160,7 @@ const RentModal = () => {
 
   const actionLabel = useMemo(() => {
     if (step === STEPS.PRICE) {
-      return 'Create'
+      return 'Crear'
     }
 
     return 'Siguiente'
@@ -189,8 +191,8 @@ const RentModal = () => {
     bodyContent = (
       <div className='flex flex-col gap-8'>
         <Heading
-          title='Agrega una foto'
-          subtitle='Muestra a tus clientes foto de la propiedad'
+          title='Agregar fotos'
+          subtitle='Muestra a tus clientes fotos de la propiedad'
         />
         <ImageUpload onChange={value => setImagesValue(value)} value={images} />
       </div>
@@ -211,12 +213,12 @@ const RentModal = () => {
     bodyContent = (
       <div className='flex flex-col gap-8'>
         <Heading
-          title='How would you describe your place?'
-          subtitle='Short and sweet works best!'
+          title='Como es mi propiedad?'
+          subtitle='una breve descripcion ayuda mucho!'
         />
         <Input
           id='title'
-          label='Title'
+          label='Titulo'
           disabled={isLoading}
           register={register}
           errors={errors}
@@ -225,7 +227,7 @@ const RentModal = () => {
         <hr />
         <Input
           id='description'
-          label='Description'
+          label='Descripcion'
           disabled={isLoading}
           register={register}
           errors={errors}
@@ -239,12 +241,12 @@ const RentModal = () => {
     bodyContent = (
       <div className='flex flex-col gap-8'>
         <Heading
-          title='Now, set your price'
-          subtitle='How much do you charge per night?'
+          title='Hora de poner el precio'
+          subtitle='Cuanto vale su propiedad?'
         />
         <Input
           id='price'
-          label='Price'
+          label='precio'
           formatPrice
           type='number'
           disabled={isLoading}

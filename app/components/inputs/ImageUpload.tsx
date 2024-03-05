@@ -60,17 +60,20 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
           >
             <TbPhotoPlus size={50} />
             <div className='font-semibold text-lg'>click para subir</div>
-            {value && (
+            {value.length > 0 && (
               <div
                 className='
               absolute inset-0 w-full h-full'
               >
-                <Image
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  src={value}
-                  alt='House'
-                />
+                {value.map((photo: string, index: number) => (
+                  <Image
+                    key={index}
+                    fill
+                    className='w-[45%]'
+                    src={photo}
+                    alt='House'
+                  />
+                ))}
               </div>
             )}
           </div>
