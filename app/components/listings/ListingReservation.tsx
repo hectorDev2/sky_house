@@ -8,6 +8,7 @@ import Calendar from '../inputs/Calendar'
 interface ListingReservationProps {
   price: number
   dateRange: Range
+
   totalPrice: number
   onChangeDate: (value: Range) => void
   onSubmit: () => void
@@ -38,10 +39,7 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
         className='
       flex flex-row items-center gap-1 p-4'
       >
-        <div className='text-2xl font-semibold'>$ {price}</div>
-        <div className='font-light text-neutral-600'>
-          m <sup>2</sup>
-        </div>
+        <div className='text-2xl font-semibold'>reserva una visita</div>
       </div>
       <hr />
       <Calendar
@@ -51,7 +49,7 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
       />
       <hr />
       <div className='p-4'>
-        <Button disabled={disabled} label='Reserve' onClick={onSubmit} />
+        <Button disabled={disabled} label='Reservar' onClick={onSubmit} />
       </div>
       <hr />
       <div
@@ -66,7 +64,7 @@ const ListingReservation: React.FC<ListingReservationProps> = ({
         '
       >
         <div>Total</div>
-        <div>$ {totalPrice}</div>
+        <div>$ {price}</div>
       </div>
     </div>
   )

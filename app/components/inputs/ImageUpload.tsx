@@ -1,8 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 'use client'
 
 import { CldUploadWidget } from 'next-cloudinary'
 import Image from 'next/image'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { TbPhotoPlus } from 'react-icons/tb'
 
 declare global {
@@ -20,14 +21,17 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
   const [photos, setPhotos] = useState<any>([])
   const handleUpload = useCallback(
     (result: any) => {
-      setPhotos([result.info.secure_url, ...photos])
-      onChange(photos)
+      setPhotos((prevPhotos: string[]) => [
+        result.info.secure_url,
+        ...prevPhotos
+      ])
     },
-
-    [onChange, photos]
+    [setPhotos]
   )
 
-  console.log(photos, 'photos ')
+  useEffect(() => {
+    onChange(photos)
+  }, [photos])
 
   return (
     <CldUploadWidget
@@ -42,13 +46,13 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
           <div
             onClick={() => open?.()}
             className='
+              max-w-full
               relative
               cursor-pointer
               hover:opacity-70
               transition
               border-dashed 
               border-2 
-              p-20 
               border-neutral-300
               flex
               flex-col
@@ -58,23 +62,23 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
               text-neutral-600
             '
           >
-            <TbPhotoPlus size={50} />
-            <div className='font-semibold text-lg'>click para subir</div>
-            {value.length > 0 && (
-              <div
-                className='
-              absolute inset-0 w-full h-full'
-              >
+            {value.length > 0 ? (
+              <div className='flex gap-2 justify-between flex-wrap'>
                 {value.map((photo: string, index: number) => (
                   <Image
+                    width={200}
+                    height={100}
                     key={index}
-                    fill
-                    className='w-[45%]'
                     src={photo}
                     alt='House'
                   />
                 ))}
               </div>
+            ) : (
+              <>
+                <TbPhotoPlus size={50} />
+                <div className='font-semibold text-lg'>click para subir</div>
+              </>
             )}
           </div>
         )

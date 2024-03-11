@@ -49,7 +49,7 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
             gap-2
           '
         >
-          <div>Hosted by {user?.name}</div>
+          <div>publicado por {user?.name}</div>
           <Avatar src={user?.image} />
         </div>
         <div
@@ -62,9 +62,15 @@ const ListingInfo: React.FC<ListingInfoProps> = ({
             text-neutral-500
           '
         >
-          <div>guests</div>
-          <div>rooms</div>
-          <div> bathrooms</div>
+          <div className='rounded-md text-white font-bold bg-yellow-400 p-1'>
+            terreno
+          </div>
+          <div className='rounded-md text-white font-bold bg-cyan-400 p-1'>
+            edificio
+          </div>
+          <div className='rounded-md text-white font-bold bg-emerald-500 p-1'>
+            departamento
+          </div>
         </div>
       </div>
       <hr />

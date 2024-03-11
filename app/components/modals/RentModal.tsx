@@ -104,7 +104,6 @@ const RentModal = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = data => {
     const dataFormat = clearData(data)
-    console.log(dataFormat, 'hi')
 
     if (step !== STEPS.PRICE) {
       return onNext()
