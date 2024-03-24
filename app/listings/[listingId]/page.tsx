@@ -16,6 +16,7 @@ const ListingPage = async ({ params }: { params: IParams }) => {
   const listing = await getListingById(params)
   const reservations = await getReservations(params)
   const currentUser = await getCurrentUser()
+  console.log(params)
 
   if (!listing) {
     return (
@@ -26,14 +27,16 @@ const ListingPage = async ({ params }: { params: IParams }) => {
   }
 
   return (
-    <ClientOnly>
-      <ListingClient
-        listing={listing}
-        reservations={reservations}
-        currentUser={currentUser}
-      />
-      <ModelModal />
-    </ClientOnly>
+    <>
+      <ClientOnly>
+        <ListingClient
+          listing={listing}
+          reservations={reservations}
+          currentUser={currentUser}
+        />
+        <ModelModal />
+      </ClientOnly>
+    </>
   )
 }
 

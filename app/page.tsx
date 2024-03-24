@@ -7,6 +7,7 @@ import getCurrentUser from '@/app/actions/getCurrentUser'
 import ClientOnly from './components/ClientOnly'
 import { Hero } from './components/shared/Hero'
 import Tips from './components/home/Tips'
+import { Features } from './components/Features'
 
 interface HomeProps {
   searchParams: IListingsParams
@@ -52,6 +53,7 @@ const Home = async ({ searchParams }: HomeProps) => {
         {/* <DemoSlider /> */}
       </Container>
       <Tips />
+      <Features />
     </ClientOnly>
   )
 }

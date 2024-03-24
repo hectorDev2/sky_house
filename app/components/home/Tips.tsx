@@ -24,7 +24,7 @@ const Tips = () => {
     }
   ]
   return (
-    <div className=' my-[50px] px-[65px] py-[50px]'>
+    <div className=' my-[50px] px-[20px] md:px-[65px] py-[50px]'>
       <h2 className='text-5xl '>Tips para comprar un proyecto</h2>
       <h3>
         Te dejamos unos consejos para que tengas en cuenta a la hora de comprar
@@ -34,10 +34,10 @@ const Tips = () => {
         {tips.map((tip, index) => (
           <div
             className='bg-white drop-shadow-md
- flex gap-3 justify-between p-4 rounded-md w-[49%]'
+ md:flex gap-3 justify-between p-4 rounded-md md:w-[49%]'
             key={index}
           >
-            <div className='bg-pink-600 drop-shadow-lg grid place-items-center rounded-full w-[56px] h-[56px]'>
+            <div className='bg-rose-500 drop-shadow-lg grid place-items-center rounded-full w-[56px] h-[56px]'>
               <h2 className='text-4xl text-white'>{index + 1}</h2>
             </div>
             <div className='text w-[90%]'>
